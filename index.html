@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<link rel="icon" type="image/x-icon" href="favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Stumble Boys - Demo</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <title>STUMBLE COLOR</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+    </script>
     <style>
         :root {
             --primary: #00ff88;
@@ -22,169 +23,185 @@
             -ms-user-select: none;
             user-select: none;
             touch-action: manipulation;
+            box-sizing: border-box;
         }
-        body { 
-            margin: 0; 
-            overflow: hidden; 
-            font-family: 'Inter', 'Segoe UI', sans-serif; 
-            background: var(--bg); 
-            color: var(--text); 
-            user-select: none; 
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            user-select: none;
             width: 100vw;
             height: 100vh;
             position: fixed;
         }
-        
+
         .overlay {
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
             background: radial-gradient(circle at center, #111 0%, #000 100%);
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             z-index: 100;
         }
-        
+
         .panel {
-            background: var(--panel); 
-            padding: 30px; 
-            border-radius: 20px; 
+            background: var(--panel);
+            padding: 30px;
+            border-radius: 20px;
             border: 1px solid #222;
-            width: 85%; 
+            width: 85%;
             max-width: 420px;
-            text-align: center; 
-            box-shadow: 0 20px 50px rgba(0,0,0,1);
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 1);
             backdrop-filter: blur(10px);
             box-sizing: border-box;
         }
 
-        h1 { 
-            font-size: 2.5rem; 
-            font-weight: 900; 
-            letter-spacing: -1px; 
-            color: var(--text); 
-            margin-bottom: 30px; 
-            text-align: center; 
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: var(--text);
+            margin-bottom: 30px;
+            text-align: center;
         }
-        h1 span { color: var(--primary); }
+        h1 span {
+            color: var(--primary);
+        }
 
-        .menu-buttons { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 12px; 
-            width: 100%; 
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
         }
-        
+
         button {
-            padding: 18px; 
-            cursor: pointer; 
-            background: #151515; 
+            padding: 18px;
+            cursor: pointer;
+            background: #151515;
             border: 1px solid #252525;
-            color: white; 
-            border-radius: 12px; 
-            font-weight: 700; 
+            color: white;
+            border-radius: 12px;
+            font-weight: 700;
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
             font-size: 0.9rem;
             touch-action: manipulation;
         }
-        button:hover, button:active { 
-            background: var(--primary); 
-            border-color: var(--primary); 
-            color: #000; 
-            transform: translateY(-3px); 
+        button:hover,
+        button:active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #000;
+            transform: translateY(-3px);
         }
-        button.secondary { 
-            background: transparent; 
-            border-color: #333; 
-            color: #888; 
-            margin-top: 10px; 
+        button.secondary {
+            background: transparent;
+            border-color: #333;
+            color: #888;
+            margin-top: 10px;
         }
-        button.secondary:hover, button.secondary:active { 
-            border-color: #555; 
-            color: #fff; 
-            transform: none; 
-        }
-
-        .sub-panel { 
-            display: none; 
-            width: 100%; 
-            animation: slideUp 0.4s ease-out; 
-        }
-        @keyframes slideUp { 
-            from { opacity: 0; transform: translateY(20px); } 
-            to { opacity: 1; transform: translateY(0); } 
+        button.secondary:hover,
+        button.secondary:active {
+            border-color: #555;
+            color: #fff;
+            transform: none;
         }
 
-        .setting-item { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 15px; 
-            text-align: left; 
+        .sub-panel {
+            display: none;
+            width: 100%;
+            animation: slideUp 0.4s ease-out;
         }
-        .setting-item label { 
-            font-size: 0.85rem; 
-            color: #999; 
-            font-weight: 600; 
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .setting-item label {
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 600;
             flex: 1;
         }
-        
-        input[type="text"], input[type="number"], select, input[type="color"] {
-            background: #111; 
-            border: 1px solid #333; 
-            color: white; 
-            padding: 10px; 
-            border-radius: 8px; 
-            width: 140px; 
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        input[type="color"] {
+            background: #111;
+            border: 1px solid #333;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            width: 140px;
             max-width: 50%;
             outline: none;
-            font-size: 16px; /* iOS zoom'u önlemek için */
+            font-size: 16px;
+            /* iOS zoom'u önlemek için */
         }
 
         #game-ui {
-            position: absolute; 
-            top: 20px; 
-            left: 50%; 
+            position: absolute;
+            top: 20px;
+            left: 50%;
             transform: translateX(-50%);
-            text-align: center; 
-            pointer-events: none; 
-            display: none; 
+            text-align: center;
+            pointer-events: none;
+            display: none;
             z-index: 50;
             width: 100%;
         }
-        #target-box { 
-            width: 80px; 
-            height: 80px; 
-            margin: 10px auto; 
-            border: 4px solid white; 
-            border-radius: 20px; 
-            box-shadow: 0 0 30px rgba(255,255,255,0.2); 
+        #target-box {
+            width: 80px;
+            height: 80px;
+            margin: 10px auto;
+            border: 4px solid white;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
         }
-        #timer { 
-            font-size: 4rem; 
-            font-weight: 900; 
-            color: #fff; 
-            line-height: 1; 
-            text-align: center; 
-            width: 100%; 
+        #timer {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+            text-align: center;
+            width: 100%;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
         }
 
         .name-tag {
-            position: absolute; 
-            padding: 4px 10px; 
-            border-radius: 6px; 
+            position: absolute;
+            padding: 4px 10px;
+            border-radius: 6px;
             font-size: 12px;
-            font-weight: 800; 
-            transform: translate(-50%, -100%); 
+            font-weight: 800;
+            transform: translate(-50%, -100%);
             pointer-events: none;
-            white-space: nowrap; 
-            transition: opacity 0.2s; 
+            white-space: nowrap;
+            transition: opacity 0.2s;
             backdrop-filter: blur(4px);
             text-align: center;
             z-index: 10;
@@ -201,7 +218,7 @@
             z-index: 90;
             pointer-events: none;
         }
-        
+
         /* Joystick */
         #joystick-container {
             position: absolute;
@@ -211,7 +228,7 @@
             height: 120px;
             pointer-events: auto;
         }
-        
+
         #joystick-base {
             width: 100%;
             height: 100%;
@@ -221,7 +238,7 @@
             position: absolute;
             backdrop-filter: blur(10px);
         }
-        
+
         #joystick-handle {
             width: 60px;
             height: 60px;
@@ -234,7 +251,7 @@
             border: 3px solid rgba(255, 255, 255, 0.3);
             transition: background 0.2s;
         }
-        
+
         /* Action Buttons */
         #action-buttons {
             position: absolute;
@@ -245,7 +262,7 @@
             gap: 20px;
             pointer-events: auto;
         }
-        
+
         .action-btn {
             width: 80px;
             height: 80px;
@@ -263,21 +280,21 @@
             user-select: none;
             transition: all 0.1s;
         }
-        
+
         .action-btn:active {
             background: rgba(0, 255, 136, 0.8);
             transform: scale(0.95);
         }
-        
+
         #push-btn {
             background: rgba(255, 50, 50, 0.7);
             border-color: rgba(255, 100, 100, 0.5);
         }
-        
+
         #push-btn:active {
             background: rgba(255, 80, 80, 0.9);
         }
-        
+
         /* Menu Toggle Button */
         #menu-toggle {
             position: absolute;
@@ -299,53 +316,58 @@
             pointer-events: auto;
             touch-action: manipulation;
         }
-        
+
         #menu-toggle:active {
             background: rgba(0, 255, 136, 0.8);
         }
 
-        .char-preview { 
-            width: 100%; 
-            height: 200px; 
-            background: radial-gradient(#222, #000); 
-            margin-bottom: 20px; 
-            border-radius: 16px; 
-            border: 1px solid #222; 
-            overflow: hidden; 
-        }
-        
-        #spectate-ui {
-            position: absolute; 
-            bottom: 30px; 
-            left: 50%; 
-            transform: translateX(-50%);
-            display: none; 
-            z-index: 120; 
-            text-align: center;
-        }
-        #spectate-ui button { 
-            padding: 15px 30px; 
-            background: rgba(255,0,0,0.2); 
-            border-color: #f44; 
-            color: #f44; 
-        }
-        #spectate-ui button:active { 
-            background: #f44; 
-            color: #000; 
+        .char-preview {
+            width: 100%;
+            height: 200px;
+            background: radial-gradient(#222, #000);
+            margin-bottom: 20px;
+            border-radius: 16px;
+            border: 1px solid #222;
+            overflow: hidden;
         }
 
-        .hidden { display: none !important; }
-        
-        .slider-container { width: 100%; margin: 10px 0; }
-        .slider-value { 
-            display: inline-block; 
-            margin-left: 10px; 
-            color: var(--primary); 
-            font-weight: bold; 
+        #spectate-ui {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            z-index: 120;
+            text-align: center;
+        }
+        #spectate-ui button {
+            padding: 15px 30px;
+            background: rgba(255, 0, 0, 0.2);
+            border-color: #f44;
+            color: #f44;
+        }
+        #spectate-ui button:active {
+            background: #f44;
+            color: #000;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .slider-container {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .slider-value {
+            display: inline-block;
+            margin-left: 10px;
+            color: var(--primary);
+            font-weight: bold;
             min-width: 40px;
             text-align: right;
         }
-        
+
         /* Kontrol Ayarı Bileşenleri */
         .control-option {
             display: flex;
@@ -358,17 +380,17 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        
+
         .control-option:hover {
             background: rgba(40, 40, 40, 0.7);
             border-color: #555;
         }
-        
+
         .control-option.selected {
             background: rgba(0, 255, 136, 0.15);
             border-color: var(--primary);
         }
-        
+
         .control-radio {
             width: 20px;
             height: 20px;
@@ -379,7 +401,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .control-radio::after {
             content: '';
             width: 10px;
@@ -388,136 +410,255 @@
             background: var(--primary);
             display: none;
         }
-        
+
         .control-option.selected .control-radio::after {
             display: block;
         }
-        
+
         .control-info {
             flex: 1;
         }
-        
+
         .control-title {
             font-weight: bold;
             font-size: 0.9rem;
             margin-bottom: 3px;
         }
-        
+
         .control-desc {
             font-size: 0.8rem;
             color: #aaa;
         }
-        
+
         /* Key Box for PC Controls */
         .key-box {
-            background: #1a1a1a; 
-            padding: 8px 12px; 
-            border-radius: 8px; 
+            background: #1a1a1a;
+            padding: 8px 12px;
+            border-radius: 8px;
             text-align: center;
-            cursor: pointer; 
-            border: 1px solid #333; 
-            font-size: 0.75rem; 
-            font-weight: 800; 
+            cursor: pointer;
+            border: 1px solid #333;
+            font-size: 0.75rem;
+            font-weight: 800;
             color: var(--primary);
             min-width: 80px;
             margin-left: 10px;
         }
-        .key-box.waiting { 
-            border-color: var(--primary); 
-            background: rgba(0,255,136,0.1); 
+        .key-box.waiting {
+            border-color: var(--primary);
+            background: rgba(0, 255, 136, 0.1);
             animation: pulse 1s infinite;
         }
-        
+
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 255, 136, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 136, 0);
+            }
         }
-        
-        /* Responsive adjustments */
+
+        /* Geliştirici Etiketi - Sol Üst (HER ZAMAN GÖRÜNÜR) */
+        #dev-credit {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 200;
+            color: #aaa;
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            letter-spacing: 0.5px;
+            pointer-events: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            /* HER ZAMAN GÖSTER */;
+        }
+        #dev-credit:hover {
+            background: rgba(0, 255, 136, 0.15);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+            transform: scale(1.02);
+        }
+        #dev-credit .v3 {
+            font-weight: 900;
+            color: #fff;
+            background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+            animation: glowPulse 2s infinite alternate;
+        }
+        @keyframes glowPulse {
+            0% {
+                filter: drop-shadow(0 0 2px rgba(255, 0, 128, 0.5));
+            }
+            100% {
+                filter: drop-shadow(0 0 15px rgba(64, 224, 208, 0.8));
+            }
+        }
+        #dev-credit a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Kazanma / Kaybetme Ekranı */
+        #result-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 150;
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        #result-box {
+            background: var(--panel);
+            padding: 40px 50px;
+            border-radius: 30px;
+            border: 1px solid #333;
+            text-align: center;
+            max-width: 400px;
+            width: 85%;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+        }
+        #result-box h2 {
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+        }
+        #result-box .sub {
+            color: #aaa;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+        #result-box .emoji-big {
+            font-size: 5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
         @media (max-width: 768px) {
             .panel {
                 padding: 25px;
                 width: 90%;
             }
-            
             h1 {
                 font-size: 2rem;
             }
-            
             #joystick-container {
                 width: 100px;
                 height: 100px;
                 bottom: 30px;
                 left: 30px;
             }
-            
             #joystick-handle {
                 width: 50px;
                 height: 50px;
             }
-            
             .action-btn {
                 width: 70px;
                 height: 70px;
                 font-size: 12px;
             }
-            
             #action-buttons {
                 bottom: 30px;
                 right: 30px;
             }
-            
             #timer {
                 font-size: 3rem;
             }
-            
             #target-box {
                 width: 70px;
                 height: 70px;
             }
+            #dev-credit {
+                font-size: 11px;
+                padding: 5px 12px;
+                top: 12px;
+                left: 12px;
+            }
+            #result-box {
+                padding: 30px 25px;
+            }
+            #result-box h2 {
+                font-size: 2.2rem;
+            }
         }
-        
+
         @media (max-width: 480px) {
             .panel {
                 padding: 20px;
             }
-            
             h1 {
                 font-size: 1.8rem;
                 margin-bottom: 20px;
             }
-            
             button {
                 padding: 15px;
                 font-size: 0.85rem;
             }
-            
             #joystick-container {
                 width: 90px;
                 height: 90px;
                 bottom: 25px;
                 left: 25px;
             }
-            
             #joystick-handle {
                 width: 45px;
                 height: 45px;
             }
-            
             .action-btn {
                 width: 65px;
                 height: 65px;
                 font-size: 11px;
             }
         }
-        
-        /* Portrait vs Landscape adjustments */
+
         @media (orientation: landscape) and (max-height: 600px) {
             #mobile-controls {
                 height: 45vh;
             }
-            
             #timer {
                 font-size: 3rem;
             }
@@ -526,8 +667,15 @@
 </head>
 <body>
 
+    <!-- Geliştirici Etiketi - Sol Üst (HER ZAMAN GÖRÜNÜR) -->
+    <div id="dev-credit">
+        <a href="https://burak-code.github.io/msz/" target="_blank">
+            <span style="color:#fff;font-weight:600;">burak_msz</span> tarafından geliştirildi <span class="v3">v3</span>
+        </a>
+    </div>
+
     <div id="main-menu" class="overlay">
-        <h1>SURV<span>IVAL</span></h1>
+        <h1>STUMBLE <span>COLOR</span></h1>
         <div class="panel" id="primary-panel">
             <div class="menu-buttons">
                 <button onclick="showSubPanel('start-settings')">BAŞLAT</button>
@@ -604,7 +752,7 @@
             <p style="color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center;">
                 Kullanmak istediğiniz kontrol yöntemini seçin:
             </p>
-            
+
             <div class="control-option" onclick="selectControlType('mobile')" id="mobile-control-option">
                 <div class="control-radio"></div>
                 <div class="control-info">
@@ -612,7 +760,7 @@
                     <div class="control-desc">Joystick ve dokunmatik butonlar</div>
                 </div>
             </div>
-            
+
             <div class="control-option" onclick="selectControlType('pc')" id="pc-control-option">
                 <div class="control-radio"></div>
                 <div class="control-info">
@@ -620,7 +768,7 @@
                     <div class="control-desc">Klavye tuşları (WASD, Space, vs.)</div>
                 </div>
             </div>
-            
+
             <!-- PC Kontrol Ayarları (Sadece PC seçildiğinde gösterilir) -->
             <div id="pc-control-settings" style="display: none; margin-top: 20px; border-top: 1px solid #333; padding-top: 20px;">
                 <h4 style="margin-top: 0; margin-bottom: 15px; font-size: 1rem;">TUŞ AYARLARI</h4>
@@ -628,7 +776,7 @@
                     <!-- Tuş ayarları buraya dinamik olarak eklenecek -->
                 </div>
             </div>
-            
+
             <button onclick="saveControlSettings()" style="width:100%; margin-top:20px; background:var(--primary); color:#000">KAYDET VE OYNA</button>
             <button class="secondary" onclick="showSubPanel('primary-panel')" style="width:100%">İPTAL</button>
         </div>
@@ -682,10 +830,20 @@
             <div class="action-btn" id="names-btn">İSİMLER</div>
         </div>
     </div>
-    
+
     <div id="menu-toggle">☰</div>
 
     <div id="name-tags-container"></div>
+
+    <!-- Sonuç Ekranı (Kazanma / Kaybetme) -->
+    <div id="result-overlay">
+        <div id="result-box">
+            <span class="emoji-big" id="result-emoji">🎉</span>
+            <h2 id="result-title">KAZANDIN!</h2>
+            <p class="sub" id="result-sub">Son ayakta kalan sen oldun!</p>
+            <button class="btn-primary" onclick="goToMainMenu()">ANA MENÜ</button>
+        </div>
+    </div>
 
     <script>
         // SADECE TEMEL RENKLER - AÇIK/KOYU TON YOK
@@ -694,20 +852,22 @@
             0x00FF00, // YEŞİL (Tam yeşil)
             0x0000FF, // MAVİ (Tam mavi)
             0xFFFF00, // SARI (Tam sarı)
+            0xFF8C00, // TURUNCU (Tam turuncu)
             0xFFFFFF, // BEYAZ
             0x8800FF, // MOR (Tam mor)
         ];
-        
+
         const COLOR_NAMES = [
             "KIRMIZI", "YEŞİL", "MAVİ", "SARI",
-            "BEYAZ", "MOR"
+            "TURUNCU", "BEYAZ", "MOR"
         ];
-        
+
         const TILE_SIZE = 4;
-        
+
         let scene, camera, renderer, clock, previewRenderer, previewScene, previewCamera, previewChar;
-        let player, bots = [], tiles = [];
-        let gameState = 'menu'; 
+        let player, bots = [],
+            tiles = [];
+        let gameState = 'menu';
         let targetColorIndex = -1;
         let timeLeft = 0;
         let showNames = true;
@@ -722,7 +882,7 @@
         // Kontrol sistemi
         let controlType = 'auto'; // 'auto', 'mobile', 'pc'
         let isWaitingForKey = null;
-        
+
         // Mobile controls
         let joystickActive = false;
         let joystickX = 0;
@@ -762,42 +922,37 @@
             const saved = localStorage.getItem('survival_pc_mobile_v2');
             if (saved) {
                 const parsed = JSON.parse(saved);
-                userSettings = {...userSettings, ...parsed};
+                userSettings = {...userSettings, ...parsed };
             }
-            
-            // Kontrol tipini ayarla
+
             if (userSettings.controlType === 'auto') {
                 controlType = isMobileDevice() ? 'mobile' : 'pc';
             } else {
                 controlType = userSettings.controlType;
             }
-            
-            // Diğer ayarları yükle
+
             document.getElementById('p-name').value = userSettings.player.name;
             document.getElementById('p-color').value = userSettings.player.color;
             document.getElementById('p-hat').value = userSettings.player.hat;
-            
-            // Oyun ayarlarını yükle
+
             showNames = userSettings.gameSettings.showNames;
             showFPS = userSettings.gameSettings.showFPS;
             cameraHeight = userSettings.gameSettings.cameraHeight;
-            
+
             document.getElementById('cfg-show-names').value = showNames;
             document.getElementById('cfg-show-fps').value = showFPS;
             document.getElementById('cfg-camera-height').value = cameraHeight;
             document.getElementById('camera-height-value').textContent = cameraHeight;
-            
-            // Kontrol seçimini güncelle
+
             updateControlSelection();
         }
 
         function saveData() {
-            // Güncel ayarları kaydet
             userSettings.controlType = controlType;
             userSettings.gameSettings.showNames = showNames;
             userSettings.gameSettings.showFPS = showFPS;
             userSettings.gameSettings.cameraHeight = cameraHeight;
-            
+
             localStorage.setItem('survival_pc_mobile_v2', JSON.stringify(userSettings));
         }
 
@@ -824,54 +979,44 @@
 
             clock = new THREE.Clock();
 
-            // Olay dinleyicilerini kur
             setupEventListeners();
-            
-            // PC tuş ayarlarını başlat
             initKeySettingsUI();
-            
+
             animate();
         }
 
         function setupEventListeners() {
-            // Klavye olayları (PC kontrolleri için)
             window.addEventListener('keydown', handleKeyDown);
             window.addEventListener('keyup', handleKeyUp);
             window.addEventListener('resize', onWindowResize);
-            
-            // Mobile kontroller için olay dinleyicileri
+
             if (controlType === 'mobile') {
                 setupMobileControls();
             }
-            
-            // Menü butonu
+
             document.getElementById('menu-toggle').addEventListener('click', function() {
                 if (gameState === 'playing' || gameState === 'spectating') {
                     pauseGame();
                 }
             });
-            
-            // FPS göstergesini güncelle
+
             if (showFPS) {
                 document.getElementById('fps-counter').style.display = 'block';
             }
         }
-        
+
         function setupMobileControls() {
             const joystickHandle = document.getElementById('joystick-handle');
             const joystickContainer = document.getElementById('joystick-container');
-            
-            // Joystick konumunu al
+
             const rect = joystickContainer.getBoundingClientRect();
             joystickBaseX = rect.left + rect.width / 2;
             joystickBaseY = rect.top + rect.height / 2;
             joystickRadius = rect.width / 2 - 30;
-            
-            // Joystick touch olayları
+
             joystickHandle.addEventListener('touchstart', handleJoystickStart);
             joystickHandle.addEventListener('mousedown', handleJoystickStart);
-            
-            // İttir butonu
+
             document.getElementById('push-btn').addEventListener('touchstart', function(e) {
                 e.preventDefault();
                 isPushing = true;
@@ -879,64 +1024,61 @@
                     performPush(player);
                 }
             });
-            
+
             document.getElementById('push-btn').addEventListener('touchend', function(e) {
                 e.preventDefault();
                 isPushing = false;
             });
-            
+
             document.getElementById('push-btn').addEventListener('mousedown', function() {
                 isPushing = true;
                 if (gameState === 'playing' && pushEnabled && player) {
                     performPush(player);
                 }
             });
-            
+
             document.getElementById('push-btn').addEventListener('mouseup', function() {
                 isPushing = false;
             });
-            
-            // İsimler butonu
+
             document.getElementById('names-btn').addEventListener('touchstart', function(e) {
                 e.preventDefault();
                 toggleNames();
             });
-            
+
             document.getElementById('names-btn').addEventListener('mousedown', function() {
                 toggleNames();
             });
-            
-            // Dokunmatik hareket olayları
+
             document.addEventListener('touchmove', handleJoystickMove, { passive: false });
             document.addEventListener('mousemove', handleJoystickMove);
             document.addEventListener('touchend', handleJoystickEnd);
             document.addEventListener('mouseup', handleJoystickEnd);
-            
-            // Uzun basma menüsünü engelle
+
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
                 return false;
             });
         }
-        
+
         function handleJoystickStart(e) {
             if (controlType !== 'mobile') return;
-            
+
             e.preventDefault();
             joystickActive = true;
             document.getElementById('joystick-handle').style.background = 'rgba(0, 255, 200, 0.9)';
-            
+
             if (e.type === 'touchstart') {
                 const touch = e.touches[0];
                 handleJoystickMove({ clientX: touch.clientX, clientY: touch.clientY, type: 'touchmove' });
             }
         }
-        
+
         function handleJoystickMove(e) {
             if (!joystickActive || controlType !== 'mobile') return;
-            
+
             e.preventDefault();
-            
+
             let clientX, clientY;
             if (e.type === 'touchmove') {
                 if (e.touches.length === 0) return;
@@ -946,44 +1088,42 @@
                 clientX = e.clientX;
                 clientY = e.clientY;
             }
-            
+
             let dx = clientX - joystickBaseX;
             let dy = clientY - joystickBaseY;
-            
+
             const distance = Math.sqrt(dx * dx + dy * dy);
             if (distance > joystickRadius) {
                 dx = (dx / distance) * joystickRadius;
                 dy = (dy / distance) * joystickRadius;
             }
-            
+
             joystickX = dx / joystickRadius;
             joystickY = dy / joystickRadius;
-            
+
             document.getElementById('joystick-handle').style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
         }
-        
+
         function handleJoystickEnd(e) {
             if (!joystickActive) return;
-            
+
             joystickActive = false;
             joystickX = 0;
             joystickY = 0;
             document.getElementById('joystick-handle').style.background = 'rgba(0, 255, 136, 0.8)';
             document.getElementById('joystick-handle').style.transform = 'translate(-50%, -50%)';
         }
-        
+
         function handleKeyDown(e) {
             if (controlType === 'mobile') return;
-            
-            // Tuş atama modunda mı?
+
             if (isWaitingForKey) {
                 userSettings.pcKeys[isWaitingForKey] = e.code;
                 isWaitingForKey = null;
                 initKeySettingsUI();
                 return;
             }
-            
-            // Oyun kontrolleri
+
             if (e.code === userSettings.pcKeys.quit) {
                 if (gameState === 'playing' || gameState === 'spectating') {
                     pauseGame();
@@ -993,16 +1133,15 @@
             } else if (gameState === 'playing' && e.code === userSettings.pcKeys.push && pushEnabled) {
                 performPush(player);
             }
-            
-            // Hareket tuşlarını kaydet
+
             keysPressed[e.code] = true;
         }
-        
+
         function handleKeyUp(e) {
             if (controlType === 'mobile') return;
             keysPressed[e.code] = false;
         }
-        
+
         const keysPressed = {};
 
         function showSubPanel(id) {
@@ -1017,24 +1156,23 @@
             valueSpan.textContent = slider.value;
             roundTime = parseFloat(slider.value);
         }
-        
+
         function updateCameraHeightValue() {
             const slider = document.getElementById('cfg-camera-height');
             const valueSpan = document.getElementById('camera-height-value');
             valueSpan.textContent = slider.value;
             cameraHeight = parseInt(slider.value);
-            
-            // Kamerayı güncelle
+
             if (camera) {
                 camera.position.set(0, cameraHeight, cameraHeight * 0.8);
                 camera.lookAt(0, 0, 0);
             }
         }
-        
+
         function updateShowNames() {
             showNames = document.getElementById('cfg-show-names').value === 'true';
         }
-        
+
         function toggleNames() {
             showNames = !showNames;
             if (controlType === 'mobile') {
@@ -1054,20 +1192,23 @@
             head.position.y = 2.2;
             group.add(head);
 
-            const hatType = isPlayer ? userSettings.player.hat : (isBot ? ['none', 'tophat', 'crown', 'cones'][Math.floor(Math.random()*4)] : 'none');
+            const hatType = isPlayer ? userSettings.player.hat : (isBot ? ['none', 'tophat', 'crown', 'cones'][Math.floor(Math
+                .random() * 4)] : 'none');
             if (hatType !== 'none') {
                 let hat;
                 if (hatType === 'tophat') {
-                    hat = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.6), new THREE.MeshPhongMaterial({color: 0x111111}));
+                    hat = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.6), new THREE.MeshPhongMaterial({ color: 0x111111 }));
                     hat.position.y = 2.8;
                 } else if (hatType === 'crown') {
-                    hat = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.1, 8, 16), new THREE.MeshPhongMaterial({color: 0xffd700}));
-                    hat.position.y = 2.7; hat.rotation.x = Math.PI/2;
+                    hat = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.1, 8, 16), new THREE.MeshPhongMaterial({ color: 0xffd700 }));
+                    hat.position.y = 2.7;
+                    hat.rotation.x = Math.PI / 2;
                 } else if (hatType === 'cones') {
                     hat = new THREE.Group();
-                    const c1 = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.4), new THREE.MeshPhongMaterial({color: 0xffffff}));
+                    const c1 = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.4), new THREE.MeshPhongMaterial({ color: 0xffffff }));
                     c1.position.set(0.2, 2.8, 0);
-                    const c2 = c1.clone(); c2.position.x = -0.2;
+                    const c2 = c1.clone();
+                    c2.position.x = -0.2;
                     hat.add(c1, c2);
                 }
                 group.add(hat);
@@ -1081,9 +1222,13 @@
             tag.style.border = `1px solid ${isPlayer ? '#00ff88' : '#444'}`;
             document.getElementById('name-tags-container').appendChild(tag);
 
-            group.userData = { 
-                name, velocity: new THREE.Vector3(), isDead: false, 
-                tagElement: tag, isPlayer, pushCooldown: 0 
+            group.userData = {
+                name,
+                velocity: new THREE.Vector3(),
+                isDead: false,
+                tagElement: tag,
+                isPlayer,
+                pushCooldown: 0
             };
             return group;
         }
@@ -1098,15 +1243,12 @@
             document.getElementById('main-menu').classList.add('hidden');
             document.getElementById('game-ui').style.display = 'block';
             document.getElementById('menu-toggle').style.display = 'flex';
-            
-            // FPS göstergesini ayarla
+            // Geliştirici etiketi zaten görünür durumda, gizlemeye gerek yok
+
             document.getElementById('fps-counter').style.display = showFPS ? 'block' : 'none';
-            
-            // Kontrol tipine göre kontrolleri göster/gizle
+
             if (controlType === 'mobile') {
                 document.getElementById('mobile-controls').style.display = 'block';
-                
-                // Joystick konumunu güncelle
                 const joystickContainer = document.getElementById('joystick-container');
                 const rect = joystickContainer.getBoundingClientRect();
                 joystickBaseX = rect.left + rect.width / 2;
@@ -1116,12 +1258,15 @@
                 document.getElementById('mobile-controls').style.display = 'none';
             }
 
+            // Sonuç ekranını gizle
+            document.getElementById('result-overlay').style.display = 'none';
+
             // Önceki oyun nesnelerini temizle
             if (tiles.length > 0) {
                 tiles.forEach(t => scene.remove(t));
                 tiles = [];
             }
-            
+
             if (bots.length > 0) {
                 bots.forEach(b => {
                     scene.remove(b);
@@ -1131,28 +1276,27 @@
                 });
                 bots = [];
             }
-            
+
             if (player) {
                 scene.remove(player);
                 if (player.userData.tagElement && player.userData.tagElement.parentNode) {
                     player.userData.tagElement.parentNode.removeChild(player.userData.tagElement);
                 }
             }
-            
+
             document.getElementById('name-tags-container').innerHTML = '';
 
             const geo = new THREE.BoxGeometry(TILE_SIZE - 0.1, 0.8, TILE_SIZE - 0.1);
-            
-            // SADECE TEMEL RENKLER - Rastgele dağılım
-            for(let i=0; i<gridSize; i++) {
-                for(let j=0; j<gridSize; j++) {
+
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
                     const cIdx = Math.floor(Math.random() * COLORS.length);
-                    const tile = new THREE.Mesh(geo, new THREE.MeshPhongMaterial({color: COLORS[cIdx]}));
-                    tile.position.set((i - gridSize/2 + 0.5)*TILE_SIZE, 0, (j - gridSize/2 + 0.5)*TILE_SIZE);
-                    tile.userData = { 
-                        colorIndex: cIdx, 
+                    const tile = new THREE.Mesh(geo, new THREE.MeshPhongMaterial({ color: COLORS[cIdx] }));
+                    tile.position.set((i - gridSize / 2 + 0.5) * TILE_SIZE, 0, (j - gridSize / 2 + 0.5) * TILE_SIZE);
+                    tile.userData = {
+                        colorIndex: cIdx,
                         colorName: COLOR_NAMES[cIdx],
-                        initialY: 0 
+                        initialY: 0
                     };
                     scene.add(tile);
                     tiles.push(tile);
@@ -1163,9 +1307,10 @@
             scene.add(player);
 
             const botNames = ["Burak", "Efe", "Can", "Melis", "Sarp", "Derin", "Arda", "Aslı", "Mert", "Selin", "Kaan", "Derya"];
-            for(let i=0; i<botCount; i++) {
-                const bot = createCharacter(botNames[i%botNames.length] + "_" + (i+1), Math.random()*0xffffff, false, true);
-                bot.position.set((Math.random()-0.5)*gridSize*TILE_SIZE, 0, (Math.random()-0.5)*gridSize*TILE_SIZE);
+            for (let i = 0; i < botCount; i++) {
+                const bot = createCharacter(botNames[i % botNames.length] + "_" + (i + 1), Math.random() * 0xffffff, false,
+                true);
+                bot.position.set((Math.random() - 0.5) * gridSize * TILE_SIZE, 0, (Math.random() - 0.5) * gridSize * TILE_SIZE);
                 bots.push(bot);
                 scene.add(bot);
             }
@@ -1180,24 +1325,122 @@
             const targetColorHex = COLORS[targetColorIndex].toString(16).padStart(6, '0');
             document.getElementById('target-box').style.backgroundColor = '#' + targetColorHex;
             document.getElementById('target-box').style.boxShadow = `0 0 30px #${targetColorHex}`;
-            
+
             timeLeft = roundTime;
-            tiles.forEach(t => { t.visible = true; t.position.y = 0; });
+            tiles.forEach(t => { t.visible = true;
+                t.position.y = 0; });
         }
 
         function checkElimination() {
             let safeTiles = 0;
-            tiles.forEach(t => { 
-                if(t.userData.colorIndex !== targetColorIndex) {
+            tiles.forEach(t => {
+                if (t.userData.colorIndex !== targetColorIndex) {
                     t.visible = false;
                 } else {
                     safeTiles++;
                 }
             });
-            
-            setTimeout(() => { 
-                if(gameState !== 'menu') startRound(); 
+
+            // Oyun bitti mi kontrol et (sadece player ve botlar)
+            const alive = [player, ...bots].filter(obj => !obj.userData.isDead);
+            const alivePlayers = alive.filter(obj => obj.userData.isPlayer);
+            const aliveBots = alive.filter(obj => !obj.userData.isPlayer);
+
+            // Eğer oyuncu öldüyse ve hayatta kalan bot varsa spectate modu
+            if (player.userData.isDead && aliveBots.length > 0) {
+                gameState = 'spectating';
+                document.getElementById('spectate-ui').style.display = 'block';
+            }
+
+            // Eğer oyuncu öldüyse ve hiç bot kalmadıysa (oyuncu sona kaldıysa aslında ölmedi ama kontrol)
+            if (player.userData.isDead && aliveBots.length === 0) {
+                // Bu durum oyuncu öldü ama botlar da öldü => oyuncu kaybetti
+                showResult(false);
+                return;
+            }
+
+            // Eğer oyuncu hayattaysa ve hiç bot kalmadıysa => KAZANDI!
+            if (!player.userData.isDead && aliveBots.length === 0) {
+                showResult(true);
+                return;
+            }
+
+            // Eğer oyuncu öldüyse ve bot kaldıysa, botlar arasında devam et
+            if (player.userData.isDead && aliveBots.length > 0) {
+                // Botlar devam eder, ama oyuncu spectate modunda
+                // Turu yeniden başlat
+                setTimeout(() => {
+                    if (gameState !== 'menu') startRound();
+                }, 2500);
+                return;
+            }
+
+            // Eğer oyuncu hayatta ve botlar da hayatta, turu yeniden başlat
+            setTimeout(() => {
+                if (gameState !== 'menu') startRound();
             }, 2500);
+        }
+
+        // Sonuç Gösterimi (Kazanma / Kaybetme)
+        function showResult(won) {
+            gameState = 'menu';
+            const overlay = document.getElementById('result-overlay');
+            const emoji = document.getElementById('result-emoji');
+            const title = document.getElementById('result-title');
+            const sub = document.getElementById('result-sub');
+
+            if (won) {
+                emoji.textContent = '🏆';
+                title.textContent = 'KAZANDIN!';
+                sub.textContent = 'Son ayakta kalan sen oldun!';
+                title.style.color = '#ffd700';
+            } else {
+                emoji.textContent = '😵';
+                title.textContent = 'KAYBETTİN!';
+                sub.textContent = 'Bir dahaki sefere daha iyi şanslar!';
+                title.style.color = '#ff4444';
+            }
+
+            overlay.style.display = 'flex';
+            document.getElementById('game-ui').style.display = 'none';
+            document.getElementById('menu-toggle').style.display = 'none';
+            document.getElementById('mobile-controls').style.display = 'none';
+            document.getElementById('spectate-ui').style.display = 'none';
+            // Geliştirici etiketi görünür kalır
+        }
+
+        function goToMainMenu() {
+            document.getElementById('result-overlay').style.display = 'none';
+            document.getElementById('main-menu').classList.remove('hidden');
+            document.getElementById('primary-panel').classList.remove('hidden');
+            document.getElementById('game-ui').style.display = 'none';
+            document.getElementById('menu-toggle').style.display = 'none';
+            document.getElementById('mobile-controls').style.display = 'none';
+            document.getElementById('spectate-ui').style.display = 'none';
+
+            // Oyun nesnelerini temizle
+            if (tiles.length > 0) {
+                tiles.forEach(t => scene.remove(t));
+                tiles = [];
+            }
+            if (bots.length > 0) {
+                bots.forEach(b => {
+                    scene.remove(b);
+                    if (b.userData.tagElement && b.userData.tagElement.parentNode) {
+                        b.userData.tagElement.parentNode.removeChild(b.userData.tagElement);
+                    }
+                });
+                bots = [];
+            }
+            if (player) {
+                scene.remove(player);
+                if (player.userData.tagElement && player.userData.tagElement.parentNode) {
+                    player.userData.tagElement.parentNode.removeChild(player.userData.tagElement);
+                }
+                player = null;
+            }
+            document.getElementById('name-tags-container').innerHTML = '';
+            gameState = 'menu';
         }
 
         function performPush(pusher) {
@@ -1209,7 +1452,7 @@
                 const dist = pusher.position.distanceTo(target.position);
                 if (dist < 3.0) {
                     const dir = new THREE.Vector3().subVectors(target.position, pusher.position).normalize();
-                    target.userData.velocity.add(dir.multiplyScalar(40)); 
+                    target.userData.velocity.add(dir.multiplyScalar(40));
                     hitAnything = true;
                 }
             });
@@ -1218,78 +1461,92 @@
 
         function updatePhysics(delta) {
             const all = [player, ...bots];
+            // Önce tüm objelerin ölü durumunu kontrol et
+            let aliveCount = 0;
             all.forEach(obj => {
-                if(obj.userData.isDead) { 
-                    obj.position.y -= 40 * delta; 
+                if (!obj.userData.isDead) aliveCount++;
+            });
+
+            // Eğer sadece oyuncu hayatta ise kazanma kontrolü
+            if (player && !player.userData.isDead && aliveCount === 1) {
+                // Tüm botlar öldü, oyuncu kazandı
+                showResult(true);
+                return;
+            }
+
+            // Eğer oyuncu öldü ve hiç bot kalmadıysa (oyuncu kaybetti)
+            if (player && player.userData.isDead) {
+                const botsAlive = bots.filter(b => !b.userData.isDead);
+                if (botsAlive.length === 0) {
+                    showResult(false);
+                    return;
+                }
+            }
+
+            all.forEach(obj => {
+                if (obj.userData.isDead) {
+                    obj.position.y -= 40 * delta;
                     obj.rotation.x += 5 * delta;
                     if (obj.userData.tagElement) {
-                        obj.userData.tagElement.style.opacity = 0; 
+                        obj.userData.tagElement.style.opacity = 0;
                     }
-                    return; 
+                    return;
                 }
-                
-                // Sürtünme uygula (kaymayı azaltmak için)
+
                 obj.userData.velocity.multiplyScalar(0.85);
-                
-                // Kontrol tipine göre hareket
-                if(obj.userData.isPlayer) {
+
+                if (obj.userData.isPlayer) {
                     const acc = 100 * delta;
-                    
+
                     if (controlType === 'mobile') {
-                        // Joystick kontrolleri
                         if (joystickActive) {
                             obj.userData.velocity.x += joystickX * acc;
                             obj.userData.velocity.z += joystickY * acc;
                         }
                     } else {
-                        // PC klavye kontrolleri
-                        if(keysPressed[userSettings.pcKeys.forward]) obj.userData.velocity.z -= acc;
-                        if(keysPressed[userSettings.pcKeys.backward]) obj.userData.velocity.z += acc;
-                        if(keysPressed[userSettings.pcKeys.left]) obj.userData.velocity.x -= acc;
-                        if(keysPressed[userSettings.pcKeys.right]) obj.userData.velocity.x += acc;
+                        if (keysPressed[userSettings.pcKeys.forward]) obj.userData.velocity.z -= acc;
+                        if (keysPressed[userSettings.pcKeys.backward]) obj.userData.velocity.z += acc;
+                        if (keysPressed[userSettings.pcKeys.left]) obj.userData.velocity.x -= acc;
+                        if (keysPressed[userSettings.pcKeys.right]) obj.userData.velocity.x += acc;
                     }
-                    
-                    // Maksimum hız sınırı (kaymayı önlemek için)
+
                     const maxSpeed = 15;
                     if (obj.userData.velocity.length() > maxSpeed) {
                         obj.userData.velocity.normalize().multiplyScalar(maxSpeed);
                     }
-                    
-                    // Aktif hareket yoksa ek sönümleme
-                    if ((controlType === 'mobile' && !joystickActive) || 
-                        (controlType === 'pc' && !keysPressed[userSettings.pcKeys.forward] && 
-                         !keysPressed[userSettings.pcKeys.backward] && 
-                         !keysPressed[userSettings.pcKeys.left] && 
-                         !keysPressed[userSettings.pcKeys.right])) {
+
+                    if ((controlType === 'mobile' && !joystickActive) ||
+                        (controlType === 'pc' && !keysPressed[userSettings.pcKeys.forward] &&
+                            !keysPressed[userSettings.pcKeys.backward] &&
+                            !keysPressed[userSettings.pcKeys.left] &&
+                            !keysPressed[userSettings.pcKeys.right])) {
                         obj.userData.velocity.multiplyScalar(0.9);
                     }
                 } else {
                     // Bot AI
-                    if(targetColorIndex !== -1) {
-                        let best = null; 
+                    if (targetColorIndex !== -1) {
+                        let best = null;
                         let dMin = Infinity;
                         tiles.forEach(t => {
-                            if(t.userData.colorIndex === targetColorIndex) {
+                            if (t.userData.colorIndex === targetColorIndex) {
                                 const d = obj.position.distanceTo(t.position);
-                                if(d < dMin) { 
-                                    dMin = d; 
-                                    best = t; 
+                                if (d < dMin) {
+                                    dMin = d;
+                                    best = t;
                                 }
                             }
                         });
-                        if(best) {
+                        if (best) {
                             const dir = new THREE.Vector3().subVectors(best.position, obj.position).normalize();
-                            obj.userData.velocity.add(dir.multiplyScalar(60*delta));
-                            
-                            // Bot hız sınırı
+                            obj.userData.velocity.add(dir.multiplyScalar(60 * delta));
+
                             const botMaxSpeed = 12;
                             if (obj.userData.velocity.length() > botMaxSpeed) {
                                 obj.userData.velocity.normalize().multiplyScalar(botMaxSpeed);
                             }
                         }
                     }
-                    
-                    // Bot itme mantığı
+
                     if (pushEnabled && obj.userData.pushCooldown <= 0) {
                         const others = all.filter(o => o !== obj && !o.userData.isDead);
                         others.forEach(other => {
@@ -1299,35 +1556,32 @@
                         });
                     }
                 }
-                
+
                 if (obj.userData.pushCooldown > 0) obj.userData.pushCooldown -= delta;
 
-                // Pozisyon güncellemesi
                 obj.position.add(obj.userData.velocity.clone().multiplyScalar(delta));
 
-                // Güvenli karede mi kontrol et
                 let onFloor = false;
                 tiles.forEach(t => {
                     if (t.visible) {
                         const dx = Math.abs(obj.position.x - t.position.x);
                         const dz = Math.abs(obj.position.z - t.position.z);
-                        if(dx < TILE_SIZE/2 && dz < TILE_SIZE/2) onFloor = true;
+                        if (dx < TILE_SIZE / 2 && dz < TILE_SIZE / 2) onFloor = true;
                     }
                 });
 
-                // Güvenli karede değilse ve tur bittiyse ele
-                if(!onFloor && targetColorIndex === -1) {
+                if (!onFloor && targetColorIndex === -1) {
                     obj.userData.isDead = true;
-                    if(obj.userData.isPlayer) {
+                    if (obj.userData.isPlayer) {
+                        // Oyuncu öldü, botlar devam eder
                         gameState = 'spectating';
                         document.getElementById('spectate-ui').style.display = 'block';
                     }
                 }
 
-                // İsim etiketlerini güncelle
                 if (showNames && obj.userData.tagElement) {
-                    const vector = obj.position.clone(); 
-                    vector.y += 3.8; 
+                    const vector = obj.position.clone();
+                    vector.y += 3.8;
                     vector.project(camera);
                     const x = (vector.x * .5 + .5) * window.innerWidth;
                     const y = (vector.y * -.5 + .5) * window.innerHeight;
@@ -1347,7 +1601,7 @@
                 previewRenderer.setSize(400, 200);
                 document.getElementById('preview-container').appendChild(previewRenderer.domElement);
                 previewScene = new THREE.Scene();
-                previewCamera = new THREE.PerspectiveCamera(45, 400/200, 0.1, 100);
+                previewCamera = new THREE.PerspectiveCamera(45, 400 / 200, 0.1, 100);
                 previewCamera.position.set(0, 2, 6);
                 previewCamera.lookAt(0, 1.5, 0);
                 previewScene.add(new THREE.AmbientLight(0xffffff, 1));
@@ -1367,17 +1621,15 @@
             }
         }
 
-        function saveCharAndReturn() { 
-            saveData(); 
-            showSubPanel('editor-menu'); 
+        function saveCharAndReturn() {
+            saveData();
+            showSubPanel('editor-menu');
         }
-        
-        // Kontrol seçim fonksiyonları
+
         function selectControlType(type) {
             controlType = type;
             updateControlSelection();
-            
-            // PC kontrolleri seçildiyse tuş ayarlarını göster
+
             const pcSettings = document.getElementById('pc-control-settings');
             if (type === 'pc') {
                 pcSettings.style.display = 'block';
@@ -1386,42 +1638,40 @@
                 pcSettings.style.display = 'none';
             }
         }
-        
+
         function updateControlSelection() {
-            // Seçili kontrol tipini güncelle
             document.getElementById('mobile-control-option').classList.toggle('selected', controlType === 'mobile');
             document.getElementById('pc-control-option').classList.toggle('selected', controlType === 'pc');
         }
-        
+
         function initKeySettingsUI() {
             const container = document.getElementById('key-settings-list');
             container.innerHTML = '';
-            
-            const labels = { 
-                forward: 'İLERİ', 
-                backward: 'GERİ', 
-                left: 'SOL', 
-                right: 'SAĞ', 
-                push: 'İTTİRME', 
-                toggleNames: 'İSİMLER', 
-                quit: 'MENÜ' 
+
+            const labels = {
+                forward: 'İLERİ',
+                backward: 'GERİ',
+                left: 'SOL',
+                right: 'SAĞ',
+                push: 'İTTİRME',
+                toggleNames: 'İSİMLER',
+                quit: 'MENÜ'
             };
-            
+
             Object.keys(userSettings.pcKeys).forEach(key => {
                 const div = document.createElement('div');
                 div.className = 'setting-item';
                 div.innerHTML = `
-                    <label>${labels[key]}</label>
-                    <div class="key-box ${isWaitingForKey === key ? 'waiting' : ''}" onclick="waitForKey('${key}')">
-                        ${formatKeyCode(userSettings.pcKeys[key])}
-                    </div>
-                `;
+                        <label>${labels[key]}</label>
+                        <div class="key-box ${isWaitingForKey === key ? 'waiting' : ''}" onclick="waitForKey('${key}')">
+                            ${formatKeyCode(userSettings.pcKeys[key])}
+                        </div>
+                    `;
                 container.appendChild(div);
             });
         }
-        
+
         function formatKeyCode(keyCode) {
-            // Tuş kodunu daha okunabilir hale getir
             const keyMap = {
                 'KeyW': 'W',
                 'KeyA': 'A',
@@ -1438,25 +1688,24 @@
                 'ControlLeft': 'CTRL',
                 'AltLeft': 'ALT'
             };
-            
             return keyMap[keyCode] || keyCode.replace('Key', '').replace('Digit', '');
         }
-        
+
         function waitForKey(key) {
             isWaitingForKey = key;
             initKeySettingsUI();
         }
-        
+
         function saveControlSettings() {
             saveData();
             showSubPanel('primary-panel');
         }
-        
+
         function saveGameSettings() {
             showNames = document.getElementById('cfg-show-names').value === 'true';
             showFPS = document.getElementById('cfg-show-fps').value === 'true';
             cameraHeight = parseInt(document.getElementById('cfg-camera-height').value);
-            
+
             saveData();
             showSubPanel('primary-panel');
         }
@@ -1465,46 +1714,28 @@
             if (gameState === 'playing' || gameState === 'spectating') {
                 window.gamePausedState = gameState;
                 gameState = 'paused';
-                
-                // Menüyü göster
+
                 document.getElementById('main-menu').classList.remove('hidden');
                 document.getElementById('primary-panel').classList.remove('hidden');
                 document.getElementById('game-ui').style.display = 'none';
                 document.getElementById('mobile-controls').style.display = 'none';
                 document.getElementById('menu-toggle').style.display = 'none';
                 document.getElementById('spectate-ui').style.display = 'none';
-                
-                // Kontrol seçimini güncelle
+                // Geliştirici etiketi görünür kalır
+
                 updateControlSelection();
             }
         }
 
-        function resumeGame() {
-            if (window.gamePausedState) {
-                gameState = window.gamePausedState;
-                document.getElementById('main-menu').classList.add('hidden');
-                document.getElementById('game-ui').style.display = 'block';
-                document.getElementById('menu-toggle').style.display = 'flex';
-                
-                if (controlType === 'mobile') {
-                    document.getElementById('mobile-controls').style.display = 'block';
-                }
-                
-                if (gameState === 'spectating') {
-                    document.getElementById('spectate-ui').style.display = 'block';
-                }
-            }
-        }
-        
         function updateFPS() {
             frameCount++;
             const currentTime = performance.now();
-            
+
             if (currentTime >= lastTime + 1000) {
                 fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
                 frameCount = 0;
                 lastTime = currentTime;
-                
+
                 if (showFPS) {
                     document.getElementById('fps-counter').textContent = `${fps} FPS`;
                 }
@@ -1514,17 +1745,16 @@
         function animate() {
             requestAnimationFrame(animate);
             const delta = Math.min(clock.getDelta(), 0.1);
-            
-            // FPS hesapla
+
             updateFPS();
-            
+
             if (gameState === 'playing' || gameState === 'spectating') {
                 if (targetColorIndex !== -1) {
                     timeLeft -= delta;
-                    if(timeLeft <= 0) { 
-                        timeLeft = 0; 
-                        checkElimination(); 
-                        targetColorIndex = -1; 
+                    if (timeLeft <= 0) {
+                        timeLeft = 0;
+                        checkElimination();
+                        targetColorIndex = -1;
                     }
                     document.getElementById('timer').innerText = timeLeft.toFixed(1);
                 } else {
@@ -1532,21 +1762,20 @@
                 }
                 updatePhysics(delta);
             }
-            
+
             if (previewRenderer && previewChar) {
                 previewChar.rotation.y += delta;
                 previewRenderer.render(previewScene, previewCamera);
             }
-            
+
             renderer.render(scene, camera);
         }
 
         function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight; 
+            camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
-            
-            // Mobile kontroller için joystick konumunu güncelle
+
             if (controlType === 'mobile' && (gameState === 'playing' || gameState === 'spectating')) {
                 const joystickContainer = document.getElementById('joystick-container');
                 const rect = joystickContainer.getBoundingClientRect();
