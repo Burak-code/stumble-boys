@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <link rel="icon" type="image/x-icon" href="favicon.png">
     <meta charset="UTF-8">
@@ -667,10 +667,10 @@
 </head>
 <body>
 
-    <!-- Geliştirici Etiketi - Sol Üst (HER ZAMAN GÖRÜNÜR) -->
+    <!-- Developer Credit - Top Left (ALWAYS VISIBLE) -->
     <div id="dev-credit">
         <a href="https://burak-code.github.io/msz/" target="_blank">
-            <span style="color:#fff;font-weight:600;">burak_msz</span> tarafından geliştirildi <span class="v3">v3</span>
+            <span style="color:#fff;font-weight:600;">burak_msz</span> developed this <span class="v3">v3</span>
         </a>
     </div>
 
@@ -678,134 +678,134 @@
         <h1>STUMBLE <span>COLOR</span></h1>
         <div class="panel" id="primary-panel">
             <div class="menu-buttons">
-                <button onclick="showSubPanel('start-settings')">BAŞLAT</button>
-                <button onclick="showSubPanel('editor-menu')">EDİTÖR</button>
-                <button onclick="showSubPanel('controls-menu')">KONTROLLER</button>
-                <button onclick="showSubPanel('settings-menu')">AYARLAR</button>
+                <button onclick="showSubPanel('start-settings')">START</button>
+                <button onclick="showSubPanel('editor-menu')">EDITOR</button>
+                <button onclick="showSubPanel('controls-menu')">CONTROLS</button>
+                <button onclick="showSubPanel('settings-menu')">SETTINGS</button>
             </div>
         </div>
 
         <div class="panel sub-panel" id="start-settings">
-            <h3 style="margin-top:0; letter-spacing:2px">OYUN AYARLARI</h3>
+            <h3 style="margin-top:0; letter-spacing:2px">GAME SETTINGS</h3>
             <div class="setting-item">
-                <label>BOT SAYISI</label>
+                <label>NUMBER OF BOTS</label>
                 <input type="number" id="cfg-bot-count" value="8" min="1" max="30">
             </div>
             <div class="setting-item">
-                <label>HARİTA BOYUTU</label>
+                <label>MAP SIZE</label>
                 <select id="cfg-grid-size">
-                    <option value="8">KÜÇÜK</option>
-                    <option value="10" selected>ORTA</option>
-                    <option value="14">BÜYÜK</option>
+                    <option value="8">SMALL</option>
+                    <option value="10" selected>MEDIUM</option>
+                    <option value="14">LARGE</option>
                 </select>
             </div>
             <div class="setting-item">
-                <label>İTTİRME GÜCÜ</label>
+                <label>PUSH POWER</label>
                 <select id="cfg-push">
-                    <option value="true">AKTİF</option>
-                    <option value="false">DEAKTİF</option>
+                    <option value="true">ACTIVE</option>
+                    <option value="false">INACTIVE</option>
                 </select>
             </div>
             <div class="setting-item">
-                <label>TUR SÜRESİ</label>
+                <label>ROUND DURATION</label>
                 <div style="display: flex; align-items: center; width: 100%;">
                     <input type="range" id="cfg-round-time" min="0.1" max="5" step="0.1" value="4.0" style="flex: 1;" oninput="updateTimeValue()">
                     <span class="slider-value" id="time-value">4.0</span> s
                 </div>
             </div>
-            <button onclick="startGame()" style="width:100%; margin-top:20px; background:var(--primary); color:#000">OYUNA GİR</button>
-            <button class="secondary" onclick="showSubPanel('primary-panel')" style="width:100%">İPTAL</button>
+            <button onclick="startGame()" style="width:100%; margin-top:20px; background:var(--primary); color:#000">ENTER GAME</button>
+            <button class="secondary" onclick="showSubPanel('primary-panel')" style="width:100%">CANCEL</button>
         </div>
 
         <div class="panel sub-panel" id="editor-menu">
-            <h3 style="margin-top:0">KARAKTER ÖZELLEŞTİR</h3>
+            <h3 style="margin-top:0">CUSTOMISE CHARACTER</h3>
             <div class="menu-buttons">
-                <button onclick="enterCharCustomizer()">KARAKTER ÖZELLEŞTİR</button>
-                <button class="secondary" onclick="showSubPanel('primary-panel')">GERİ</button>
+                <button onclick="enterCharCustomizer()">CHARACTER CUSTOMISER</button>
+                <button class="secondary" onclick="showSubPanel('primary-panel')">BACK</button>
             </div>
         </div>
 
         <div class="panel sub-panel" id="char-customizer">
             <div id="preview-container" class="char-preview"></div>
             <div class="setting-item">
-                <label>İSİM</label>
-                <input type="text" id="p-name" value="OYUNCU" oninput="updatePreview()">
+                <label>NAME</label>
+                <input type="text" id="p-name" value="PLAYER" oninput="updatePreview()">
             </div>
             <div class="setting-item">
-                <label>RENK</label>
+                <label>COLOUR</label>
                 <input type="color" id="p-color" value="#00ff88" oninput="updatePreview()">
             </div>
             <div class="setting-item">
-                <label>AKSESUAR</label>
+                <label>ACCESSORY</label>
                 <select id="p-hat" onchange="updatePreview()">
-                    <option value="none">YOK</option>
-                    <option value="tophat">SİLİNDİR</option>
-                    <option value="crown">TAC</option>
-                    <option value="cones">BOYNUZ</option>
+                    <option value="none">NONE</option>
+                    <option value="tophat">TOP HAT</option>
+                    <option value="crown">CROWN</option>
+                    <option value="cones">HORNS</option>
                 </select>
             </div>
-            <button onclick="saveCharAndReturn()" style="width:100%; background:var(--primary); color:#000">KAYDET</button>
+            <button onclick="saveCharAndReturn()" style="width:100%; background:var(--primary); color:#000">SAVE</button>
         </div>
 
         <div class="panel sub-panel" id="controls-menu">
-            <h3 style="margin-top:0">KONTROL SEÇENEĞİ</h3>
+            <h3 style="margin-top:0">CONTROL SCHEME</h3>
             <p style="color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center;">
-                Kullanmak istediğiniz kontrol yöntemini seçin:
+                Select the control method you want to use:
             </p>
 
             <div class="control-option" onclick="selectControlType('mobile')" id="mobile-control-option">
                 <div class="control-radio"></div>
                 <div class="control-info">
-                    <div class="control-title">MOBİL KONTROLLER</div>
-                    <div class="control-desc">Joystick ve dokunmatik butonlar</div>
+                    <div class="control-title">MOBILE CONTROLS</div>
+                    <div class="control-desc">Joystick and touch buttons</div>
                 </div>
             </div>
 
             <div class="control-option" onclick="selectControlType('pc')" id="pc-control-option">
                 <div class="control-radio"></div>
                 <div class="control-info">
-                    <div class="control-title">BİLGİSAYAR KONTROLLERİ</div>
-                    <div class="control-desc">Klavye tuşları (WASD, Space, vs.)</div>
+                    <div class="control-title">COMPUTER CONTROLS</div>
+                    <div class="control-desc">Keyboard keys (WASD, Space, etc.)</div>
                 </div>
             </div>
 
-            <!-- PC Kontrol Ayarları (Sadece PC seçildiğinde gösterilir) -->
+            <!-- PC Control Settings (only shown when PC is selected) -->
             <div id="pc-control-settings" style="display: none; margin-top: 20px; border-top: 1px solid #333; padding-top: 20px;">
-                <h4 style="margin-top: 0; margin-bottom: 15px; font-size: 1rem;">TUŞ AYARLARI</h4>
+                <h4 style="margin-top: 0; margin-bottom: 15px; font-size: 1rem;">KEY BINDINGS</h4>
                 <div id="key-settings-list" style="max-height: 200px; overflow-y: auto; padding-right: 10px;">
-                    <!-- Tuş ayarları buraya dinamik olarak eklenecek -->
+                    <!-- Key settings will be dynamically added here -->
                 </div>
             </div>
 
-            <button onclick="saveControlSettings()" style="width:100%; margin-top:20px; background:var(--primary); color:#000">KAYDET VE OYNA</button>
-            <button class="secondary" onclick="showSubPanel('primary-panel')" style="width:100%">İPTAL</button>
+            <button onclick="saveControlSettings()" style="width:100%; margin-top:20px; background:var(--primary); color:#000">SAVE & PLAY</button>
+            <button class="secondary" onclick="showSubPanel('primary-panel')" style="width:100%">CANCEL</button>
         </div>
 
         <div class="panel sub-panel" id="settings-menu">
-            <h3 style="margin-top:0">AYARLAR</h3>
+            <h3 style="margin-top:0">SETTINGS</h3>
             <div class="setting-item">
-                <label>İSİMLERİ GÖSTER</label>
+                <label>SHOW NAMES</label>
                 <select id="cfg-show-names" onchange="updateShowNames()">
-                    <option value="true">EVET</option>
-                    <option value="false">HAYIR</option>
+                    <option value="true">YES</option>
+                    <option value="false">NO</option>
                 </select>
             </div>
             <div class="setting-item">
-                <label>FPS GÖSTER</label>
+                <label>SHOW FPS</label>
                 <select id="cfg-show-fps">
-                    <option value="false">HAYIR</option>
-                    <option value="true">EVET</option>
+                    <option value="false">NO</option>
+                    <option value="true">YES</option>
                 </select>
             </div>
             <div class="setting-item">
-                <label>KAMERA YÜKSEKLİĞİ</label>
+                <label>CAMERA HEIGHT</label>
                 <div style="display: flex; align-items: center; width: 100%;">
                     <input type="range" id="cfg-camera-height" min="10" max="50" step="1" value="25" style="flex: 1;" oninput="updateCameraHeightValue()">
                     <span class="slider-value" id="camera-height-value">25</span>
                 </div>
             </div>
-            <button onclick="saveGameSettings()" style="width:100%; margin-top:20px; background:var(--primary); color:#000">KAYDET</button>
-            <button class="secondary" onclick="showSubPanel('primary-panel')" style="width:100%">İPTAL</button>
+            <button onclick="saveGameSettings()" style="width:100%; margin-top:20px; background:var(--primary); color:#000">SAVE</button>
+            <button class="secondary" onclick="showSubPanel('primary-panel')" style="width:100%">CANCEL</button>
         </div>
     </div>
 
@@ -816,7 +816,7 @@
     </div>
 
     <div id="spectate-ui">
-        <button onclick="location.reload()">OYUNDAN ÇIK</button>
+        <button onclick="location.reload()">EXIT GAME</button>
     </div>
 
     <!-- Mobile Controls -->
@@ -826,8 +826,8 @@
             <div id="joystick-handle"></div>
         </div>
         <div id="action-buttons">
-            <div class="action-btn" id="push-btn">İTTİR</div>
-            <div class="action-btn" id="names-btn">İSİMLER</div>
+            <div class="action-btn" id="push-btn">PUSH</div>
+            <div class="action-btn" id="names-btn">NAMES</div>
         </div>
     </div>
 
@@ -835,31 +835,31 @@
 
     <div id="name-tags-container"></div>
 
-    <!-- Sonuç Ekranı (Kazanma / Kaybetme) -->
+    <!-- Result Screen (Win / Lose) -->
     <div id="result-overlay">
         <div id="result-box">
             <span class="emoji-big" id="result-emoji">🎉</span>
-            <h2 id="result-title">KAZANDIN!</h2>
-            <p class="sub" id="result-sub">Son ayakta kalan sen oldun!</p>
-            <button class="btn-primary" onclick="goToMainMenu()">ANA MENÜ</button>
+            <h2 id="result-title">YOU WIN!</h2>
+            <p class="sub" id="result-sub">You are the last one standing!</p>
+            <button class="btn-primary" onclick="goToMainMenu()">MAIN MENU</button>
         </div>
     </div>
 
     <script>
-        // SADECE TEMEL RENKLER - AÇIK/KOYU TON YOK
+        // ONLY BASIC COLOURS - NO LIGHT/DARK SHADES
         const COLORS = [
-            0xFF0000, // KIRMIZI (Tam kırmızı)
-            0x00FF00, // YEŞİL (Tam yeşil)
-            0x0000FF, // MAVİ (Tam mavi)
-            0xFFFF00, // SARI (Tam sarı)
-            0xFF8C00, // TURUNCU (Tam turuncu)
-            0xFFFFFF, // BEYAZ
-            0x8800FF, // MOR (Tam mor)
+            0xFF0000, // RED
+            0x00FF00, // GREEN
+            0x0000FF, // BLUE
+            0xFFFF00, // YELLOW
+            0xFF8C00, // ORANGE
+            0xFFFFFF, // WHITE
+            0x8800FF, // PURPLE
         ];
 
         const COLOR_NAMES = [
-            "KIRMIZI", "YEŞİL", "MAVİ", "SARI",
-            "TURUNCU", "BEYAZ", "MOR"
+            "RED", "GREEN", "BLUE", "YELLOW",
+            "ORANGE", "WHITE", "PURPLE"
         ];
 
         const TILE_SIZE = 4;
@@ -879,7 +879,7 @@
         let lastTime = performance.now();
         let fps = 0;
 
-        // Kontrol sistemi
+        // Control system
         let controlType = 'auto'; // 'auto', 'mobile', 'pc'
         let isWaitingForKey = null;
 
@@ -893,7 +893,7 @@
         let isPushing = false;
         let isNamesToggled = false;
 
-        // PC kontrolleri için tuş ayarları
+        // PC control key bindings
         let userSettings = {
             controlType: 'auto',
             pcKeys: {
@@ -905,7 +905,7 @@
                 toggleNames: 'KeyF',
                 quit: 'Tab'
             },
-            player: { name: 'Oyuncu', color: '#00ff88', hat: 'none' },
+            player: { name: 'Player', color: '#00ff88', hat: 'none' },
             gameSettings: {
                 showNames: true,
                 showFPS: false,
@@ -913,7 +913,7 @@
             }
         };
 
-        // Cihaz tespiti
+        // Device detection
         function isMobileDevice() {
             return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         }
@@ -1243,7 +1243,7 @@
             document.getElementById('main-menu').classList.add('hidden');
             document.getElementById('game-ui').style.display = 'block';
             document.getElementById('menu-toggle').style.display = 'flex';
-            // Geliştirici etiketi zaten görünür durumda, gizlemeye gerek yok
+            // Developer credit is always visible
 
             document.getElementById('fps-counter').style.display = showFPS ? 'block' : 'none';
 
@@ -1258,10 +1258,10 @@
                 document.getElementById('mobile-controls').style.display = 'none';
             }
 
-            // Sonuç ekranını gizle
+            // Hide result screen
             document.getElementById('result-overlay').style.display = 'none';
 
-            // Önceki oyun nesnelerini temizle
+            // Clear previous game objects
             if (tiles.length > 0) {
                 tiles.forEach(t => scene.remove(t));
                 tiles = [];
@@ -1306,7 +1306,7 @@
             player = createCharacter(userSettings.player.name, userSettings.player.color, true);
             scene.add(player);
 
-            const botNames = ["Burak", "Efe", "Can", "Melis", "Sarp", "Derin", "Arda", "Aslı", "Mert", "Selin", "Kaan", "Derya"];
+            const botNames = ["Burak", "Efe", "Can", "Melis", "Sarp", "Derin", "Arda", "Asli", "Mert", "Selin", "Kaan", "Derya"];
             for (let i = 0; i < botCount; i++) {
                 const bot = createCharacter(botNames[i % botNames.length] + "_" + (i + 1), Math.random() * 0xffffff, false,
                 true);
@@ -1341,47 +1341,45 @@
                 }
             });
 
-            // Oyun bitti mi kontrol et (sadece player ve botlar)
+            // Check if game is over (player and bots)
             const alive = [player, ...bots].filter(obj => !obj.userData.isDead);
             const alivePlayers = alive.filter(obj => obj.userData.isPlayer);
             const aliveBots = alive.filter(obj => !obj.userData.isPlayer);
 
-            // Eğer oyuncu öldüyse ve hayatta kalan bot varsa spectate modu
+            // If player died and there are bots alive, spectate mode
             if (player.userData.isDead && aliveBots.length > 0) {
                 gameState = 'spectating';
                 document.getElementById('spectate-ui').style.display = 'block';
             }
 
-            // Eğer oyuncu öldüyse ve hiç bot kalmadıysa (oyuncu sona kaldıysa aslında ölmedi ama kontrol)
+            // If player died and no bots left (player lost)
             if (player.userData.isDead && aliveBots.length === 0) {
-                // Bu durum oyuncu öldü ama botlar da öldü => oyuncu kaybetti
                 showResult(false);
                 return;
             }
 
-            // Eğer oyuncu hayattaysa ve hiç bot kalmadıysa => KAZANDI!
+            // If player is alive and no bots left => WIN!
             if (!player.userData.isDead && aliveBots.length === 0) {
                 showResult(true);
                 return;
             }
 
-            // Eğer oyuncu öldüyse ve bot kaldıysa, botlar arasında devam et
+            // If player died and bots remain, continue with bots
             if (player.userData.isDead && aliveBots.length > 0) {
-                // Botlar devam eder, ama oyuncu spectate modunda
-                // Turu yeniden başlat
+                // Bots continue, player spectates
                 setTimeout(() => {
                     if (gameState !== 'menu') startRound();
                 }, 2500);
                 return;
             }
 
-            // Eğer oyuncu hayatta ve botlar da hayatta, turu yeniden başlat
+            // If player and bots are alive, restart round
             setTimeout(() => {
                 if (gameState !== 'menu') startRound();
             }, 2500);
         }
 
-        // Sonuç Gösterimi (Kazanma / Kaybetme)
+        // Result Display (Win / Lose)
         function showResult(won) {
             gameState = 'menu';
             const overlay = document.getElementById('result-overlay');
@@ -1391,13 +1389,13 @@
 
             if (won) {
                 emoji.textContent = '🏆';
-                title.textContent = 'KAZANDIN!';
-                sub.textContent = 'Son ayakta kalan sen oldun!';
+                title.textContent = 'YOU WIN!';
+                sub.textContent = 'You are the last one standing!';
                 title.style.color = '#ffd700';
             } else {
                 emoji.textContent = '😵';
-                title.textContent = 'KAYBETTİN!';
-                sub.textContent = 'Bir dahaki sefere daha iyi şanslar!';
+                title.textContent = 'YOU LOSE!';
+                sub.textContent = 'Better luck next time!';
                 title.style.color = '#ff4444';
             }
 
@@ -1406,7 +1404,7 @@
             document.getElementById('menu-toggle').style.display = 'none';
             document.getElementById('mobile-controls').style.display = 'none';
             document.getElementById('spectate-ui').style.display = 'none';
-            // Geliştirici etiketi görünür kalır
+            // Developer credit remains visible
         }
 
         function goToMainMenu() {
@@ -1418,7 +1416,7 @@
             document.getElementById('mobile-controls').style.display = 'none';
             document.getElementById('spectate-ui').style.display = 'none';
 
-            // Oyun nesnelerini temizle
+            // Clear game objects
             if (tiles.length > 0) {
                 tiles.forEach(t => scene.remove(t));
                 tiles = [];
@@ -1461,20 +1459,20 @@
 
         function updatePhysics(delta) {
             const all = [player, ...bots];
-            // Önce tüm objelerin ölü durumunu kontrol et
+            // Check death status of all objects
             let aliveCount = 0;
             all.forEach(obj => {
                 if (!obj.userData.isDead) aliveCount++;
             });
 
-            // Eğer sadece oyuncu hayatta ise kazanma kontrolü
+            // If only player is alive, win check
             if (player && !player.userData.isDead && aliveCount === 1) {
-                // Tüm botlar öldü, oyuncu kazandı
+                // All bots died, player wins
                 showResult(true);
                 return;
             }
 
-            // Eğer oyuncu öldü ve hiç bot kalmadıysa (oyuncu kaybetti)
+            // If player died and no bots remain (player lost)
             if (player && player.userData.isDead) {
                 const botsAlive = bots.filter(b => !b.userData.isDead);
                 if (botsAlive.length === 0) {
@@ -1573,7 +1571,7 @@
                 if (!onFloor && targetColorIndex === -1) {
                     obj.userData.isDead = true;
                     if (obj.userData.isPlayer) {
-                        // Oyuncu öldü, botlar devam eder
+                        // Player died, bots continue
                         gameState = 'spectating';
                         document.getElementById('spectate-ui').style.display = 'block';
                     }
@@ -1649,13 +1647,13 @@
             container.innerHTML = '';
 
             const labels = {
-                forward: 'İLERİ',
-                backward: 'GERİ',
-                left: 'SOL',
-                right: 'SAĞ',
-                push: 'İTTİRME',
-                toggleNames: 'İSİMLER',
-                quit: 'MENÜ'
+                forward: 'FORWARD',
+                backward: 'BACKWARD',
+                left: 'LEFT',
+                right: 'RIGHT',
+                push: 'PUSH',
+                toggleNames: 'NAMES',
+                quit: 'MENU'
             };
 
             Object.keys(userSettings.pcKeys).forEach(key => {
@@ -1677,13 +1675,13 @@
                 'KeyA': 'A',
                 'KeyS': 'S',
                 'KeyD': 'D',
-                'Space': 'BOŞLUK',
+                'Space': 'SPACE',
                 'KeyF': 'F',
                 'Tab': 'TAB',
-                'ArrowUp': 'YUKARI',
-                'ArrowDown': 'AŞAĞI',
-                'ArrowLeft': 'SOL',
-                'ArrowRight': 'SAĞ',
+                'ArrowUp': 'UP',
+                'ArrowDown': 'DOWN',
+                'ArrowLeft': 'LEFT',
+                'ArrowRight': 'RIGHT',
                 'ShiftLeft': 'SHIFT',
                 'ControlLeft': 'CTRL',
                 'AltLeft': 'ALT'
@@ -1721,7 +1719,7 @@
                 document.getElementById('mobile-controls').style.display = 'none';
                 document.getElementById('menu-toggle').style.display = 'none';
                 document.getElementById('spectate-ui').style.display = 'none';
-                // Geliştirici etiketi görünür kalır
+                // Developer credit remains visible
 
                 updateControlSelection();
             }
